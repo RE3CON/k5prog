@@ -12,12 +12,57 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+  #  - uses: actions/checkout@v3
    # - name: configure
    #   run: ./configure
-    - name: make
-      run: make
+   # - name: make
+   #   run: make
    # - name: make check
    #   run: make check
    # - name: make distcheck
    #   run: make distcheck
+   - name: arm-none-eabi-gcc
+      uses: carlosperate/arm-none-eabi-gcc-action@v1
+      with:
+        release: '10.3-2021.10'
+
+  #  - name: Install Python dependencies
+  #    run: python3 -m pip install --upgrade pip crcmod
+
+    - name: Checkout
+      uses: actions/checkout@v3
+    #  with:
+    #    fetch-depth: 0
+
+    - name: Submodules
+      run: git submodule update --init --recursive --depth 1
+
+    - name: Make
+      run:  make
+
+    - name: size
+      run:  arm-none-eabi-size k5prog
+
+    - name: rename
+      run: mv k5prog.exe k5prog${{ github.event.release.tag_name }}.exe
+
+    - name: Get the date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+    - name: 'Add unpacked k5prog to release'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: k5prog.exe
+        asset_name: ${{ format('k5prog.raw_{0}.exe', github.run_number) }}
+        tag: ${{ format('release-{0}', github.run_number) }}
+        release_name: ${{ format('Release {0}, {1}', github.run_number, steps.date.outputs.date) }}
+  
+    - name: 'Add packed k5prog to release'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: k5prog${{ github.event.release.tag_name }}.exe
+        asset_name: ${{ format('k5prog_v{0}.exe', github.run_number) }}
+        tag: ${{ format('release-{0}', github.run_number) }}
+        release_name: ${{ format('Release {0}, {1}', github.run_number, steps.date.outputs.date) }}
+#created_at
