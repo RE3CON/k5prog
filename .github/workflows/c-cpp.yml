@@ -38,8 +38,8 @@ jobs:
     #  with:
     #    fetch-depth: 0
 
-    - name: Submodules
-      run: git submodule update --init --recursive --depth 1
+   # - name: Submodules
+    #  run: git submodule update --init --recursive --depth 1
 
     - name: Make
       run:  make
