@@ -32,7 +32,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         file: k5prog.exe
-        asset_name: ${{ format('k5prog.raw_{0}.exe', github.run_number) }}
+     #   asset_name: ${{ format('k5prog.raw_{0}.exe', github.run_number) }}
         tag: ${{ format('release-{0}', github.run_number) }}
         release_name: ${{ format('Release {0}, {1}', github.run_number, steps.date.outputs.date) }}
   
