@@ -33,5 +33,6 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         name: k5prog
+        path: k5prog
         artifacts: k5prog
         tag: v1.0.1
