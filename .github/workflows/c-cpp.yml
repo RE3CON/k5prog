@@ -1,10 +1,13 @@
-name: C/C++ CI
-
+name: 'release'
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+#name: C/C++ CI
+
+#on:
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
 
 jobs:
   build:
@@ -30,4 +33,4 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: k5prog
-        tag: v0.1.0
+        tag: v1.0.0
