@@ -6,7 +6,7 @@ COPTS=-g -O2 -Wall
 default: k5prog
 
 k5prog: k5prog.c uvk5.h
-	$(CC) $(COPTS) k5prog.c -o k5prog
+	$(CC) $(COPTS) k5prog.c -o k5prog.exe
 
 clean:
-	rm k5prog
+	rm k5prog*.*
