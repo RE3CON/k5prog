@@ -28,10 +28,10 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: k5prog
-        path: k5prog
+        path: k5prog.exe
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
         name: k5prog
-        artifacts: k5prog
-        tag: v1.1.2
+        artifacts: k5prog.exe
+        tag: v1.1.4
