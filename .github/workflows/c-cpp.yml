@@ -26,8 +26,8 @@ jobs:
       with:
         name: k5prog
         path: k5prog
-    - name: 'Create Release'
+    - name: Create Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "k5prog*.raw"
+        artifacts: k5prog
         tag: v0.0.1
